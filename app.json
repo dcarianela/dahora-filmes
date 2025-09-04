@@ -12,7 +12,10 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "plaforms" : ["ios", "android"],
+    "plaforms": [
+      "ios",
+      "android"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -22,6 +25,9 @@
         "backgroundColor": "#000000"
       },
       "edgeToEdgeEnabled": true
-    }
+    },
+    "plugins": [
+      "expo-font"
+    ]
   }
 }

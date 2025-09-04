@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Button, Image, StyleSheet, Text, View } from "react-native";
 import { SafeAreaProvider, SafeAreaView }  from "react-native-safe-area-context";
 
 export default function App() {
@@ -8,6 +8,7 @@ export default function App() {
       <SafeAreaView style={estilos.container}>
         <StatusBar style="auto"></StatusBar>
         <View style={estilos.viewLogo}>
+          <Image source={require("./assets/dahora.png")} style={estilos.logo} />
           <Text>Dá Hora Filmes</Text>
         </View>
         <View style={estilos.viewBotoes}>
@@ -26,17 +27,20 @@ export default function App() {
 /* Estilos */
 const estilos = StyleSheet.create({
   container: {
-    backgroundColor: "#fff9c4",
+    backgroundColor: "#fff",
     paddingHorizontal: 20,
     flex: 1,
     justifyContent: "center",
 
   },
   viewLogo: {
-    backgroundColor: "#a5d6a7",
-    flex:2,
-    justifyContent: "flex-end",
+    flex:3,
+    justifyContent: "center",
     alignItems: "center",
+  },
+  logo: {
+    width: 128,
+    height: 128,
   },
   viewBotoes: {
     backgroundColor: "#ffcc80",
