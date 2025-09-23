@@ -22,7 +22,8 @@ Aplicativo desenvolvido utilizando React Native com Expo.
 - Configuração da `Stack` (pilha de navegação das telas) no arquivo `_layout.tsx`
 - Troca da `StatusBar` para a versão React Native
 - Migração do conteúdo/estrutura do `App.tsx` para o `_layout.tsx` e para as páginas correspondentes (index, privacidade e sobre)
-- Configuração
+- Configuração das rotas usando componente `Link` do expo-router
+- Uso do componente `ScrollView` para telas com barra de rolagem
 
 ---
 
