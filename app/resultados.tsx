@@ -2,7 +2,7 @@
 import { StyleSheet, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Stack, useLocalSearchParams } from "expo-router";
-import { ParametrosBusca } from "../src/components/types";
+import { ParametrosBusca } from "../src/types";
 
 export default function Resultados() {
   const { filme } = useLocalSearchParams<ParametrosBusca>();
