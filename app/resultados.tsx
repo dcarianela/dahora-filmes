@@ -2,17 +2,26 @@
 import { StyleSheet, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Stack, useLocalSearchParams } from "expo-router";
-import { ParametrosBusca } from "../src/types";
-import { useEffect } from "react";
-import { api } from "../src/services/api";
+import { Filme, ParametrosBusca } from "@/src/types";
+import { useEffect, useState } from "react";
+import { api } from "@/src/services/api";
 
 export default function Resultados() {
   const { filme } = useLocalSearchParams<ParametrosBusca>();
+
+  // Criando um state para gerenciar a lista de filmes obtida da API
+  const [resultados, setResultados] = useState<Filme[]>([]);
+
+  // Criando um state para alternar a exibição de um loading
+  const [loading, setLoading] = useState(false);
 
   /* Criando a lógica para acesso ao serviço (API) usando o axios */
   useEffect(() => {
     // Se não houver um filme definido, para tudo
     if (!filme) return;
+
+    // Ao começar as ações de busca na API, iniciamos o loading
+    setLoading(true);
 
     api
       .get("/search/movie", {
@@ -22,9 +31,13 @@ export default function Resultados() {
           include_adult: false,
         },
       })
-      .then((resposta) => console.log(resposta.data.results))
-      .catch((err) => console.log(err));
-  });
+      .then((resposta) => setResultados(resposta.data.results))
+      .catch((err) => console.log(err))
+
+      // Acabou o processo de busca? Mesmo com sucesso ou erro?
+      // Então, finalmente, desative o loading
+      .finally(() => setLoading(false));
+  }, [filme]);
 
   return (
     <>
