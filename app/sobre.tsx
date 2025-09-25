@@ -1,5 +1,5 @@
 import { Stack } from "expo-router";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function sobre() {
@@ -11,23 +11,42 @@ export default function sobre() {
         }}
       />
       <SafeAreaView style={estilos.container}>
-        <View style={estilos.card}>
-          <Image
-            source={require("../assets/dahora.png")}
-            style={estilos.logo}
-          />
-          <Text style={estilos.titulo}>Dá Hora Filmes!</Text>
-          <Text style={estilos.subtitulo}>Versão 1.0.0</Text>
-          <Text style={estilos.paragrafo}>
-            O Dá Hora Filmes! é um aplicativo para você buscar, descobrir e
-            salvar seus filmes favoritos. Mantenha-se atualizado sobre o mundo
-            do cinema de forma rápida e intuitiva.
-          </Text>
-        </View>
+        <ScrollView>
+          <View style={estilos.card}>
+            <Image
+              source={require("@/assets/dahora.png")}
+              style={estilos.logo}
+            />
+            <Text style={estilos.titulo}>Dá Hora Filmes!</Text>
+            <Text style={estilos.subtitulo}>Versão 1.0.0</Text>
+            <Text style={estilos.paragrafo}>
+              O Dá Hora Filmes! é um aplicativo para você buscar, descobrir e
+              salvar seus filmes favoritos. Mantenha-se atualizado sobre o mundo
+              do cinema de forma rápida e intuitiva.
+            </Text>
+          </View>
 
-        <View style={estilos.rodape}>
-          <Text style={estilos.textoRodape}>Desenvolvido por DAHORA-2025.</Text>
-        </View>
+          <View style={estilos.card}>
+            <Image
+              source={require("@/assets/logo-tmdb.png")}
+              style={estilos.logo}
+            />
+
+            <Text style={estilos.subtitulo}>The Movie Database (TMDb)</Text>
+
+            <Text style={estilos.paragrafo}>
+              As informações sobre os filmes são coletadas e atualizadas a
+              partir da base de dados pública disponibilizada pelo site The
+              Movie Database
+            </Text>
+          </View>
+
+          <View style={estilos.rodape}>
+            <Text style={estilos.textoRodape}>
+              Desenvolvido por DAHORA-2025.
+            </Text>
+          </View>
+        </ScrollView>
       </SafeAreaView>
     </>
   );
@@ -42,6 +61,7 @@ const estilos = StyleSheet.create({
     padding: 20,
   },
   card: {
+    marginBottom: 10,
     backgroundColor: "#fff",
     borderRadius: 10,
     padding: 20,
