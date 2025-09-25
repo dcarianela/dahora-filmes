@@ -53,7 +53,13 @@ export default function Resultados() {
           Você buscou por: <Text style={estilos.termo}>{filme}</Text>
         </Text>
 
-        {loading ? <Loading /> : <Text>Busca finalizada!</Text>}
+        {loading ? (
+          <Loading />
+        ) : (
+          resultados.map((resultado) => (
+            <Text key={resultado.id}>{resultado.title}</Text>
+          ))
+        )}
       </SafeAreaView>
     </>
   );
