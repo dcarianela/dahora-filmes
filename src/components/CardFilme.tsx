@@ -15,7 +15,12 @@ export default function CardFilme({ filme }: CardFilmeProps) {
 
   const leiaMais = () => {
     router.push({
-      pathname: `/detalhes/${id}`,
+      pathname: "/detalhes/[id]",
+      params: {
+        // Convertemos os filme completo para string/json
+        // enviamos como parâmetro para a rota de detalhes
+        filme: JSON.stringify(filme),
+      },
     });
   };
   return (
