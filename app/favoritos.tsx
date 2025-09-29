@@ -1,17 +1,26 @@
 // app/favoritos.tsx
-import { StyleSheet, Text, View, Pressable, Alert } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Pressable,
+  Alert,
+  FlatList,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Stack } from "expo-router";
+import { router, Stack, useRouter } from "expo-router";
 
 // @ts-ignore
 import { Ionicons } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
-import { Filme } from "@/src/types";
+import { Filme, ItemDaListaDeFavoritosProps } from "@/src/types";
 import { buscarFavoritos } from "@/src/services/storage-favoritos";
+import Loading from "@/src/components/Loading";
 
 export default function Favoritos() {
   const [favoritos, setFavoritos] = useState<Filme[]>([]);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     buscarFavoritos()
@@ -22,9 +31,19 @@ export default function Favoritos() {
 
   console.log(favoritos);
 
-  const itemDaListaDeFavoritos = () => (
-    <Pressable style={estilos.item}>
-      <Text style={estilos.titulo}>Titulo...</Text>
+  const itemDaListaDeFavoritos = ({ item }: ItemDaListaDeFavoritosProps) => (
+    <Pressable
+      style={estilos.item}
+      onPress={() => {
+        router.push({
+          pathname: "/detalhes/[id]",
+          params: {
+            filme: JSON.stringify(item),
+          },
+        });
+      }}
+    >
+      <Text style={estilos.titulo}>{item.title}</Text>
       <Pressable style={estilos.botaoLixeira}>
         <Ionicons name="trash" size={24} color="#888" />
       </Pressable>
@@ -46,7 +65,21 @@ export default function Favoritos() {
           headerTitle: "Meus Favoritos",
         }}
       />
-      <SafeAreaView style={estilos.container}></SafeAreaView>
+      <SafeAreaView style={estilos.container}>
+        {loading ? (
+          <Loading />
+        ) : (
+          <View style={estilos.viewLista}>
+            <FlatList
+              data={favoritos}
+              keyExtractor={(item) => item.id.toString()}
+              showsVerticalScrollIndicator={false}
+              renderItem={itemDaListaDeFavoritos}
+              ListEmptyComponent={ListaVazia}
+            />
+          </View>
+        )}
+      </SafeAreaView>
     </>
   );
 }
