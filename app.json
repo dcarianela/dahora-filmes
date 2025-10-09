@@ -13,7 +13,10 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "platforms": ["ios", "android"],
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -24,6 +27,16 @@
       },
       "edgeToEdgeEnabled": true
     },
-    "plugins": ["expo-font", "expo-router"]
+    "plugins": [
+      "expo-font",
+      "expo-router"
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "d86d192c-551e-4e0c-8e59-8b78376026ea"
+      }
+    },
+    "owner": "dcarianela"
   }
 }
